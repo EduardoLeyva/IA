@@ -1,48 +1,24 @@
-
-
+package U1;
 public class Nodo {
 	
-	int dato;
-	String nombre;
 	Nodo hijoIzquierdo, hijoDerecho;
+	String nombre;
 	
-    public Nodo (int d, String nom) {
-    	this.dato=d;
+    public Nodo (String nom) {
     	this.nombre=nom;
     	this.hijoDerecho=null;
     	this.hijoIzquierdo=null;
     }
     
-    public Nodo BuscaInOrden(String nombre) {
-    	
-		Nodo Retorno = null;
-		
-		if(nombre.equals( this.nombre )) 
-		{
-			return this;
-		}
-		if(hijoIzquierdo != null) 
-		{
-			Retorno = hijoIzquierdo.BuscaInOrden(nombre);
-		}else if (hijoDerecho != null)
-		{
-			Retorno = hijoDerecho.BuscaInOrden(nombre);
-		}
-		
-		if(Retorno != null) {
-			return Retorno;
-		}
-			return null;
-
+    public Nodo AuxBuscar(String nombre) {
+		Nodo n = null;
+		if(nombre.equals( this.nombre )) return this;
+		if(hijoIzquierdo != null) n = hijoIzquierdo.AuxBuscar(nombre);
+		else if (hijoDerecho != null) n = hijoDerecho.AuxBuscar(nombre);
+		if(n != null) return n;
+		return null;
 	}
     
-    public int getDato() {
-		return dato;
-	}
-
-	public void setDato(int dato) {
-		this.dato = dato;
-	}
 
 	public String getNombre() {
 		return nombre;
@@ -69,6 +45,6 @@ public class Nodo {
 	}
     
     public String toString() {
-    	return nombre + " Su dato es " + dato;
+    	return nombre;
     }
 }

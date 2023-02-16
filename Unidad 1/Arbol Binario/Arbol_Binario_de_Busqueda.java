@@ -1,14 +1,14 @@
-
-
+package U1;
 import javax.swing.JOptionPane;
 
 public class Arbol_Binario_de_Busqueda {
 
 	public static void main(String[] args) {
 		
-		int opcion = 0, elemento;
-		String nombre;
-		Arbol arbolito = new Arbol();
+		int opcion = 0;
+		String nombre ="";
+		Arbol arbolizza = new Arbol();
+		
 		do{
 			try {
 				opcion = Integer.parseInt(JOptionPane.showInputDialog(null,
@@ -21,45 +21,44 @@ public class Arbol_Binario_de_Busqueda {
 							, JOptionPane.QUESTION_MESSAGE));
 				switch(opcion) {
 				case 1:
-					if(!arbolito.estaVacio()) {
+					if(!arbolizza.estaVacio()) {
 						JOptionPane.showMessageDialog(null, "El Arbol no esta Vacio",
-								"¡Cuidado!", JOptionPane.INFORMATION_MESSAGE);
+								"Notificacion", JOptionPane.INFORMATION_MESSAGE);
 					}else {
 						JOptionPane.showMessageDialog(null, "El Arbol esta Vacio",
-								"¡Cuidado!", JOptionPane.INFORMATION_MESSAGE);
+								"Notificacion", JOptionPane.INFORMATION_MESSAGE);
 					}
 					break;
 				case 2:
-					if(!arbolito.estaVacio()) {
-						elemento = Integer.parseInt(JOptionPane.showInputDialog(null,
-						"Ingresa el Numero del Nodo Buscado...","Buscando Nodo",JOptionPane.QUESTION_MESSAGE));
+					if(!arbolizza.estaVacio()) {
 						
-						if(arbolito.buscarNodo(elemento) == null) {
+						nombre = JOptionPane.showInputDialog(null,
+						"Ingresa el nombre del Nodo Buscado...","Buscando Nodo",JOptionPane.QUESTION_MESSAGE);
+						if(arbolizza.buscarNodo(nombre) == null) {
 							JOptionPane.showMessageDialog(null, "El Nodo no se encuentra en el Arbol",
 									"¡Nodo No Encontrado!", JOptionPane.INFORMATION_MESSAGE);
 						}else {
-							System.out.println("Nodo Encontrado, sus datos son:" + arbolito.buscarNodo(elemento) );
+							JOptionPane.showMessageDialog(null, "Nombre: " + arbolizza.buscarNodo(nombre),
+									"Nodo encontrado", JOptionPane.INFORMATION_MESSAGE);
 						}
 					}else {
 					JOptionPane.showMessageDialog(null, "El Arbol esta Vacio",
-					"¡Cuidado!", JOptionPane.INFORMATION_MESSAGE);
+					"Notificacion", JOptionPane.INFORMATION_MESSAGE);
 				}
 					break;
 				case 3:
-					elemento = Integer.parseInt(JOptionPane.showInputDialog(null,
-							"Ingresa el Numero del Nodo...","Agregando Nodo",JOptionPane.QUESTION_MESSAGE));
 					nombre = JOptionPane.showInputDialog(null,
 							"Ingresa el Nombre del Nodo...","Agregando Nodo"
 							,JOptionPane.QUESTION_MESSAGE);
-					arbolito.Insertar(elemento, nombre);
+					arbolizza.Insertar(nombre);
 					break;
 				case 4:
-					if(arbolito.estaVacio()) {
+					if(arbolizza.estaVacio()) {
 						JOptionPane.showMessageDialog(null, "El Arbol esta Vacio",
-								"¡Cuidado!", JOptionPane.INFORMATION_MESSAGE);
+								"Notificacion", JOptionPane.INFORMATION_MESSAGE);
 					}else {
 						System.out.println("\nArbol:");
-						arbolito.ImprimirArbol();
+						arbolizza.ImprimirArbol();
 					}
 					break;
 				case 5:
@@ -68,10 +67,10 @@ public class Arbol_Binario_de_Busqueda {
 					break;
 					default:
 						JOptionPane.showMessageDialog(null, "Opcion incorrecta",
-								"¡Cuidado!", JOptionPane.INFORMATION_MESSAGE);
+								"Notificacion", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}catch(NumberFormatException n) {
-				if (n.getMessage().equals("Cannot parse null string")){
+				if (n.getMessage().equals("null")){
 					opcion=5;
 					JOptionPane.showMessageDialog(null, "Aplicacion finalizada ",
 							"Fin", JOptionPane.INFORMATION_MESSAGE);

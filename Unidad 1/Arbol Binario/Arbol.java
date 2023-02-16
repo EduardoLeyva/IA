@@ -1,14 +1,14 @@
-
-
+package U1;
 public class Arbol {
 	Nodo raiz;
 	
 	public Arbol() {
 		raiz=null;
 	}
+	
 //	Metodo para insetar un Nodo en el arbol
-	public void Insertar(int d, String nom) {
-		Nodo nuevo = new Nodo (d, nom);
+	public void Insertar(String nom) {
+		Nodo nuevo = new Nodo (nom);
 		if(raiz==null) {
 			raiz=nuevo;
 		}else {
@@ -16,18 +16,10 @@ public class Arbol {
 			Nodo padre;
 			while (true) {
 				padre = auxiliar;
-				if(d>auxiliar.dato) {
-					auxiliar = auxiliar.hijoIzquierdo;
-					if(auxiliar==null) {
-						padre.hijoIzquierdo = nuevo;
-						return;
-					}
-				}else {
-				auxiliar = auxiliar.hijoDerecho;
+				auxiliar = auxiliar.hijoIzquierdo;
 				if(auxiliar==null) {
-					padre.hijoDerecho=nuevo;
+					padre.hijoIzquierdo = nuevo;
 					return;
-					}
 				}
 			}
 		}
@@ -37,26 +29,22 @@ public class Arbol {
 	public boolean estaVacio() {
 		return raiz == null;
 	}
-	//Metodo para buscar un Nodo en el Arbol
-	public Nodo buscarNodo(int d) {
-		Nodo aux = raiz;
-		while(aux.dato!=d) {
-			if(d<aux.dato) {
-				aux = aux.hijoIzquierdo;
-			}else {
-				aux = aux.hijoDerecho;
-			}
-			if(aux == null) {
-				return null;
-			}
-		}
-		return aux;
-	}
 	
 	//Metodo para buscar un Nodo en el Arbol
-	public Nodo BuscarNodo(String nombre) {
-		return raiz.BuscaInOrden(nombre);
+	public Nodo buscarNodo(String nombre) {
+		return buscarNodo(nombre, raiz);
 	}
+
+	private Nodo buscarNodo(String nombre, Nodo r) {
+		Nodo Retorno = null;
+		String compara = r.nombre;
+		if (nombre.equals(compara)) return r;
+		if (r.getHijoIzquierdo() != null) Retorno = r.getHijoIzquierdo().AuxBuscar(nombre);
+		if (r.getHijoDerecho() != null) Retorno = r.getHijoDerecho().AuxBuscar(nombre);
+		if (Retorno != null) return Retorno;
+		return null;
+	}
+	
 	
 	//Metodo para Imprimir el Arbol
 	public void ImprimirArbol() {
@@ -70,10 +58,6 @@ public class Arbol {
 			ImprimirArbol(n.getHijoDerecho());
 		}
 	}
-
+	
 }
-
-
-
-
 
