@@ -58,14 +58,14 @@ public class ArbolBusqueda {
     
     public int Heuristica_1ra(String estado) {
 		
-		int valorHeuristico = 0;
+		int heuristico = 0;
 		
 		for(int i = 0; i < estado.length(); i++) {
 			if(estado.charAt(i) != objetivo.charAt(i)) {
-				valorHeuristico++;
+				heuristico++;
 			}
 		}
-		return valorHeuristico;
+		return heuristico;
 	}
     
     public Comparator<Nodo> Heuristica_2da() {
@@ -80,17 +80,17 @@ public class ArbolBusqueda {
     
 	private int Heuristica_2da(String estado) {
 		
-		int valorheuristico = 0, caracter1 = 0, caracter2 = 0, valorheuricaracter = 0;
+		int heuristico = 0, caracter1 = 0, caracter2 = 0, heuristicaIndice = 0;
 		
 		for(int i = 0; i < estado.length(); i++) {
-			valorheuricaracter = 0;
+			heuristicaIndice = 0;
 			caracter1 = (int) estado.charAt(i);
 			caracter2 = (int) objetivo.charAt(i);
-			valorheuricaracter = caracter1 - caracter2;
-			valorheuricaracter = Math.abs(valorheuricaracter);
-			valorheuristico = valorheuricaracter + valorheuristico;
+			heuristicaIndice = caracter1 - caracter2;
+			heuristicaIndice = Math.abs(heuristicaIndice);
+			heuristico = heuristicaIndice + heuristico;
 		}
-		return valorheuristico;
+		return heuristico;
 	}
 
     
@@ -105,9 +105,39 @@ public class ArbolBusqueda {
     }
 
 	public int Heuristica_3era(String estado) {
-		// insertar codigo
-		return 0;
-	}
+     	int filas = 0, columnas = 0;
+        int filasObj = 0, columnasObj = 0;
+        int devolver = 0;
+
+
+        devolver = 0;
+        filas =  (int)estado.charAt(0)  +  (int)estado.charAt(1)  +  (int) estado.charAt(2);
+        filasObj =  (int) objetivo.charAt(0)  +  (int) objetivo.charAt(1)  +  (int) objetivo.charAt(2);
+        devolver += Math.abs(filas - filasObj);
+
+
+        filas =  (int)estado.charAt(3)  +  (int)estado.charAt(4)  +  (int) estado.charAt(5);
+        filasObj =  (int) objetivo.charAt(3)  +  (int) objetivo.charAt(4)  +  (int) objetivo.charAt(5);
+        devolver += Math.abs(filas - filasObj);
+
+        filas =  (int)estado.charAt(6)  +  (int)estado.charAt(7)  +  (int) estado.charAt(8);
+        filasObj =  (int) objetivo.charAt(6)  +  (int) objetivo.charAt(7)  +  (int) objetivo.charAt(8);
+        devolver += Math.abs(filas - filasObj);
+
+        columnas =  (int)estado.charAt(0)  +  (int)estado.charAt(3)  +  (int) estado.charAt(6);
+        columnasObj =  (int)objetivo.charAt(0)  +  (int)objetivo.charAt(3)  +  (int) objetivo.charAt(6);
+        devolver += Math.abs(columnas - columnasObj);
+
+        columnas =  (int)estado.charAt(1)  +  (int)estado.charAt(4)  +  (int) estado.charAt(7);
+        columnasObj =  (int)objetivo.charAt(1)  +  (int)objetivo.charAt(4)  +  (int) objetivo.charAt(7);
+        devolver += Math.abs(columnas - columnasObj);
+
+        columnas =  (int)estado.charAt(2)  +  (int)estado.charAt(5)  +  (int) estado.charAt(8);
+        columnasObj =  (int)objetivo.charAt(2)  +  (int)objetivo.charAt(5)  +  (int) objetivo.charAt(8);
+        devolver += Math.abs(columnas - columnasObj);
+
+        return devolver;
+    }
     
     public void busquedaPorHeuristica(int Heuristica)
     {
